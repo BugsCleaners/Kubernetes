@@ -1,0 +1,34 @@
+package com.check.yazan.modules;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class Users
+{
+    private int userid;
+    private String name;
+    private String status;
+    public Users() {}
+    public Users(String name, int userid) {this.name = name;this.userid=userid;}
+
+    @JsonProperty("userid")
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+    public int getUserid() {return this.userid;}
+
+    @JsonProperty("name")
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @JsonProperty("status")
+    public String getStatus() {
+        return this.status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+}

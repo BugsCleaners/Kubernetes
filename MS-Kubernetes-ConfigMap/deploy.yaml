@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sec
+  name: sec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sec
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sec
+    spec:
+      containers:
+      - image: xxyazan00/sec:latest
+        name: sec
+        resources: {}
+        env:
+          - name: APPUSERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: conf1
+                key: appusername
+status: {
+}
