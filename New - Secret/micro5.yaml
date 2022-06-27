@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micro7-deployment
+  labels:
+    app: micro7
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: micro7
+  template:
+    metadata:
+      labels:
+        app: micro7
+    spec:
+      containers:
+        - name: micro7
+          image: bugscleaners/micro7
+          ports:
+            - containerPort: 8080
+          env:
+            - name: info-secret-value
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: secretname
