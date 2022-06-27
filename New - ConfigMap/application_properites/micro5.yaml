@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micro5-deployment
+  labels:
+    app: micro5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: micro5
+  template:
+    metadata:
+      labels:
+        app: micro5
+    spec:
+      containers:
+        - name: micro5
+          image: bugscleaners/micro5
+          ports:
+            - containerPort: 8080
+          env:
+            - name: info-config-value
+              valueFrom:
+                configMapKeyRef:
+                  name: config1
+                  key: userInformation
