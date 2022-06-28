@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: readingfile-deployment
+  labels:
+    app: readingfile
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: readingfile
+  template:
+    metadata:
+      labels:
+        app: readingfile
+    spec:
+      containers:
+        - name: readingfile
+          image: bugscleaners/readingfile
+          volumeMounts:
+            - name: volume-file
+              mountPath: /etc/config
+          ports:
+            - containerPort: 8080
+          env:
+            - name: filepath
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: filepath
+      volumes:
+        - name: volume-file
+          hostPath:
+            path: /etc
+            type: Directory
