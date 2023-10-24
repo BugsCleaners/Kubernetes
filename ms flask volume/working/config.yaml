@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+data:
+  filecontent : eshtaghal ya sari
+  filepath2 : /home/sari/data.txt

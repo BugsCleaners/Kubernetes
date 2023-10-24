@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: gcr.io/axial-trail-378611/flaskvol:v1
+    volumeMounts:
+    - name: config-volume
+      mountPath: /data
+  volumes:
+  - name: config-volume
+    configMap:
+      name: configvol

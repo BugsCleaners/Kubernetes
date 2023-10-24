@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configvol
+data:
+  data.txt: |
+    This is some data in a text file.

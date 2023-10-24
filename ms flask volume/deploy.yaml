@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: volume-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: volume-app
+  template:
+    metadata:
+      labels:
+        app: volume-app
+    spec:
+      containers:
+      - name: volume-container
+        image: gcr.io/axial-trail-378611/flaskvol:v1
+        volumeMounts:
+        - name: config-volume
+          mountPath: /data
+      volumes:
+      - name: config-volume
+        configMap:
+          name: configvol
+          items:
+          - key: data.txt
+            path: data.txt
