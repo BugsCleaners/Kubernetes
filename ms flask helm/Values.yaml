@@ -1,0 +1,35 @@
+configmap:
+  name: appconfig
+  data:
+    USERNAME: sari before upgrade
+
+deployment:
+  name: app
+  replicas: 1
+  image:
+    repository: gcr.io/axial-trail-378611/flaskcm
+    tag: v8
+  containers:
+    name: app
+    port: 80
+    env:
+        name: USERNAME
+        valueFrom:
+          configMapKeyRef:
+            name: appconfig
+            key: USERNAME
+
+pod:
+  name: app
+  repository: gcr.io/axial-trail-378611/flaskcm
+  tag: v8
+  spec:
+    containers:
+      name: app
+      volumeMounts:
+        name: config-vol
+        mountPath: /config
+    volumes:
+      name: config-vol
+      configMap:
+          name: appconfig

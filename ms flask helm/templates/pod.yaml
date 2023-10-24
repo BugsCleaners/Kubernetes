@@ -1,0 +1,19 @@
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: {{ .Values.pod.name }}
+spec:
+  containers:
+    - name: {{ .Values.pod.name }}
+      image:  "{{ .Values.pod.repository}}:{{ .Values.pod.tag }}"
+      volumeMounts:
+        - name: {{ .Values.pod.spec.containers.volumeMounts.name }}
+          mountPath: {{ .Values.pod.spec.containers.volumeMounts.mountPath }}
+  volumes:
+    - name:
+        {{ .Values.pod.spec.volumes.name }}
+      configMap:
+        name:
+          {{ .Values.pod.spec.volumes.configMap.name }}
+
