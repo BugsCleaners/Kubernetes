@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: app
+  labels:
+    app: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: gcr.io/axial-trail-378611/flaskcm:v8
+          ports:
+            - containerPort: 80
+          env:
+            - name: USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: appconfig
+                  key: USERNAME
