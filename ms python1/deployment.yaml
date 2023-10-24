@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userapp1
+spec:
+  selector:
+    matchLabels:
+      app: userapp1
+  replicas: 3
+  template:
+      metadata:
+        labels:
+          app: userapp1
+      spec:
+       containers:
+         name: userapp1
+         image: gcr.io/axial-trail-378611/username:v8
+         env:
+           name: USERNAME
+           valueFrom:
+             configMapKeyRef:
+               name: myconfig2
+               key:  USERNAME

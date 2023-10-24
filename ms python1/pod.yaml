@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: userapp1
+spec:
+  containers:
+    - name: userapp1
+      image: gcr.io/axial-trail-378611/username:v11
+      volumeMounts:
+        - name: config-vol
+          mountPath: /config
+  volumes:
+    - name: config-vol
+      configMap:
+        name: myconfig2
