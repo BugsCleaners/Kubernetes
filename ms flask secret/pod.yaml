@@ -1,0 +1,27 @@
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+
+  name: secret-test-pod
+
+spec:
+
+  containers:
+
+    - name: test-container
+
+      image: gcr.io/axial-trail-378611/flasksec:v1
+      env:
+        - name: username
+          valueFrom:
+            secretKeyRef:
+              name: test-secret
+              key: username
+        - name: password
+          valueFrom:
+            secretKeyRef:
+              name: test-secret
+              key: password
+

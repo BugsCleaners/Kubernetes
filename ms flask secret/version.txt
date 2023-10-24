@@ -1,0 +1,1 @@
+image: gcr.io/axial-trail-378611/flasksec:v1
